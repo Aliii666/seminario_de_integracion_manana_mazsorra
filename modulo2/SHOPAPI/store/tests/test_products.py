@@ -51,7 +51,8 @@ class ProductFilterTests(TestCase):
         cat = create_category()
         create_product('Laptop',   price=850, stock=5,  category=cat)
         create_product('Cheap',    price=20,  stock=0,  category=cat)
-        create_product('Inactive', price=50,  stock=10, category=cat, is_active=False)
+        create_product('Inactive', price=150,  stock=10, category=cat, is_active=False)
+        
 
     def test_filter_by_max_price(self):
         resp = self.client.get('/api/products/?price_max=100')

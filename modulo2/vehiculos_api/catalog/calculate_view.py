@@ -1,8 +1,8 @@
-from django.http import JsonResponse 
+from django.http import JsonResponse
 from rest_framework import status
 from rest_framework.decorators import api_view
 
-def calcular_area_tranquilo(request):
+def calcular_area_triangulo(request):
     try:
         base = float(request.GET.get('base'))
         altura = float(request.GET.get('altura'))
@@ -14,34 +14,33 @@ def calcular_area_tranquilo(request):
         })
     except (TypeError, ValueError):
         return JsonResponse({
-            'error': 'Debe enviar base y altura como parámetros numéricos.'
+            'error': 'Debe enviar base y altura válidas'
         }, status=400)
-    
+
 @api_view(['POST'])
 def promedio_ventas(request):
     try:
-        productos = request.data.get('productos')
-        if not productos or not isinstance(productos, list):
+        productos=request.data.get('productos')
+        if not productos or not isinstance(productos,list):
             return JsonResponse(
                 {
-                'error': 'Debe enviar un arreglo de productos'
+                    'error': 'Debe enviar un arreglo de productos'
                 }
             )
         total_ventas=0
         for producto in productos:
-            ventas=float(producto.get('ventas', 0))
-            total_ventas += ventas
-        cantidad_productos = len(productos)
-        promedio = total_ventas / cantidad_productos
+            ventas=float(producto.get('ventas',0))
+            total_ventas+=ventas
+        cantidad_productos=len(productos)
+        promedio = total_ventas/cantidad_productos
 
         return JsonResponse({
             'cantidad_productos': cantidad_productos,
             'total_ventas': total_ventas,
             'promedio_ventas': promedio
+
         })
-    except (TypeError, ValueError):
+    except Exception as e:
         return JsonResponse({
-            'error': str(e)'
+            'error': str(e)
         }, status=status.HTTP_400_BAD_REQUEST)
-    
-    

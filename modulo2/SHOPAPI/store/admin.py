@@ -32,3 +32,4 @@ class OrderAdmin(admin.ModelAdmin):
     search_fields   = ['user__username']
     inlines         = [OrderItemInline]
     readonly_fields = ['total', 'created_at', 'updated_at']
+

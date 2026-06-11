@@ -134,4 +134,5 @@ class OrderFilterTests(TestCase):
 
     def test_stats_regular_user_returns_403(self):
         resp = auth_client(create_user('mario')).get('/api/orders/stats/')
-        self.assertEqual(resp.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(resp.status_code, status.HTTP_403_FORBIDDEN)   
+
