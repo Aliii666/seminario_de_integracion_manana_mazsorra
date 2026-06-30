@@ -22,11 +22,11 @@ const total = subtotal - descuento;  // 1350
 // ── Métodos de string ─────────────────────────────────────────────────────
 const usuario = "  admin@corp.com  ";
 console.log(usuario.trim().toLowerCase()); // "admin@corp.com"
-console.log(email.includes("empresa"));    
-console.log(email.split("@"));              // ["soporte", "empresa.com"]
-console.log(email.split("@")[1]); 
-let personas: string ="Pablo;Marmol;25;12-12-2012";
-console.log(personas.split(";")[0]);         // "Pablo"
+console.log(email.includes("empresa"));    // true
+console.log(email.split("@"));
+console.log(email.split("@")[1]);          // "empresa.com"
+let personas: string = "Pablo;Marmol;25;12-12-2012";
+console.log(personas.split(";"));
 
 // ── Lógica con boolean ────────────────────────────────────────────────────
 const puedeAcceder: boolean = estaActivo && !requiereAuth;

@@ -9,6 +9,7 @@ function procesarPedido(id: number, estado: Estado): void {
 procesarPedido(1, "procesando"); // ok
 // procesarPedido(2, "cancelado"); // Error de compilación: no es un Estado válido
 
+// EJEMPLO
 
 type PrioridadTicket = "baja" | "media" | "alta" | "critica";
 

@@ -1,4 +1,4 @@
-// Numerico
+// NUMERICO
 // Concepto puro
 const entero: number = 42;
 const decimal: number = 3.14;
@@ -17,7 +17,8 @@ console.log(Number.MAX_SAFE_INTEGER); // 9007199254740991
 console.log(Number.isFinite(1 / 0)); // false (Infinity no es finito)
 console.log(Number.isNaN(0 / 0));    // true
 
-// String
+
+// STRING
 // Concepto puro
 const simple: string = "Hola TypeScript";
 const doble: string = 'También funciona';
@@ -27,7 +28,7 @@ const nombre: string = "Ana";
 const edad: number = 28;
 
 // Interpolación: embebe expresiones dentro de ${}
-const saludo2: string = `Hola, ${nombre}. Tienes ${edad} años.`;
+const saludo: string = `Hola, ${nombre}. Tienes ${edad} años.`;
 const mayoria: string = `Eres ${edad >= 18 ? "mayor" : "menor"} de edad.`;
 
 // Multilínea sin caracteres de escape
@@ -38,15 +39,15 @@ const mensaje: string = `
 `.trim();
 
 // Métodos comunes (tipados, el editor autocompleta)
-console.log("  hola  ".trim());      
-console.log("hola".toLowerCase());   // "hola"
+console.log("  hola  ".trim());         // "hola"
 console.log("hola".toUpperCase());      // "HOLA"
+console.log("hola".toLowerCase());      // "hola"
 console.log("2024-06-15".split("-"));   // ["2024", "06", "15"]
 console.log("error: fallo".includes("error")); // true
-console.log("archivo.ts".endsWith(".ts"));     
-console.log("aechivo.ts".startsWith(".ts"));// true
+console.log("archivo.ts".endsWith(".ts"));     // true
+console.log("archivo.ts".startsWith(".ts"));     // false
 
-// Boolean
+// BOOLEAN
 // Concepto puro
 const activo: boolean = true;
 const eliminado: boolean = false;
@@ -61,8 +62,8 @@ if (!tieneStock) {
   console.log("Sin stock disponible");
 }
 
-//NULO O DEFINIDO
 
+// NULL AND UNDEFINED
 // Concepto puro
 let sinAsignar: undefined = undefined;
 let sinValor: null = null;

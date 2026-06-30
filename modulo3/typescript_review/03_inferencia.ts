@@ -27,3 +27,24 @@ codigo = "OK";  // válido
 function ping(host: string, intentos: number): string {
   return `Ping a ${host} — ${intentos} intento(s)`;
 }
+
+// Las variables de estado de un servidor: cuándo anotar y cuándo inferir.
+
+const NOMBRE_SERVIDOR = "web-prod-01";   // inferido: string — claro del valor
+const PUERTO_DEFAULT  = 443;             // inferido: number
+const ES_PRODUCCION   = true;            // inferido: boolean
+
+// Variables que cambian durante la vida del servidor:
+let solicitudesAtendidas: number = 0;    // anotación: se inicializa en 0 pero cambia
+let ultimoError: string | null = null;   // anotación: puede ser null al inicio
+
+// Función con anotaciones completas (necesarias en parámetros):
+function registrarSolicitud(ruta: string, codigoHttp: number): void {
+  solicitudesAtendidas++;
+  console.log(`[${NOMBRE_SERVIDOR}] ${codigoHttp} ${ruta} — total: ${solicitudesAtendidas}`);
+}
+
+registrarSolicitud("/api/usuarios", 200);
+registrarSolicitud("/api/productos", 404);
+// [web-prod-01] 200 /api/usuarios — total: 1
+// [web-prod-01] 404 /api/productos — total: 2

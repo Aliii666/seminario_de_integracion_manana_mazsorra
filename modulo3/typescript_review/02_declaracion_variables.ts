@@ -7,16 +7,17 @@ const DEBUG_MODE: boolean = false;
 let contador: number = 0;
 let estadoConexion: string = "desconectado";
 let usuarioActivo: boolean = false;
-console.log(`
-    contador: ${contador} 
+
+console.log(`contador : ${contador} 
     estado conexion: ${estadoConexion} 
-    usuario activo: ${usuarioActivo}`);
+    usuario activo : ${usuarioActivo}`);
+
 contador++;                         // 1
 estadoConexion = "conectado";       // ok
-usuarioActivo = true;  
-console.log(`
-    contador: ${contador} 
+usuarioActivo = true;               // ok
+
+console.log(`contador : ${contador} 
     estado conexion: ${estadoConexion} 
-    usuario activo: ${usuarioActivo}`);             // ok
+    usuario activo : ${usuarioActivo}`);
 
 // PI = 3;  // ← Error: Cannot assign to 'PI' because it is a constant.

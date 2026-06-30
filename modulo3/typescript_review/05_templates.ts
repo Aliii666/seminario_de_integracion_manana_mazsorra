@@ -14,25 +14,23 @@ const iva: number    = 0.19;
 const total: string  = `Precio con IVA: $${(precio * (1 + iva)).toFixed(2)}`;
 console.log(total);
 // Precio con IVA: $1428.00
-// Precio con IVA: $1428.00
 
 // Multi-línea — sin concatenación ni \n
-let servidor: string = "web-02";
-let estadoServidor: boolean = true;
-let uptime: number = 99.5;
+let servidor: string="web-02";
+let estadoServidor: boolean=true
+let uptime: number=99.5;
+
 const reporte: string = `
 === Reporte del sistema ===
 Servidor : web-01
 Estado   : activo
 Uptime   : 99.9%
 `;
-
-
+console.log(reporte);
 const reporte2: string = `
 === Reporte del sistema ===
 Servidor : ${servidor}
-Estado   : ${estadoServidor ? 'activo' : 'inactivo'}
+Estado   : ${estadoServidor?"Activo":"Inactivo"}
 Uptime   : ${uptime}%
 `;
-console.log(reporte);
 console.log(reporte2);
