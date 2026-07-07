@@ -1,6 +1,5 @@
 // src/App.tsx
 import { useState } from 'react'
-import { useAuth }  from './contexts/AuthContext'
 
 // MODULE 1 COMPONENTS
 import WelcomeBanner       from './components/WelcomeBanner'
@@ -42,61 +41,6 @@ import DebounceSearch   from './components/DebounceSearch'
 import FetchUser        from './components/FetchUser'
 import AutoFocusInput   from './components/AutoFocusInput'
 
-// MODULE 4 COMPONENTS (REFS - useRef)
-import AutoFocusForm    from './components/AutoFocusForm'
-import Stopwatch        from './components/Stopwatch'
-import InlineEditor     from './components/InlineEditor'
-import PreviousValue    from './components/PreviousValue'
-import ScrollTracker    from './components/ScrollTracker'
-import ClickOutside     from './components/ClickOutside'
-import VideoPlayer      from './components/VideoPlayer'
-import RenderCounter    from './components/RenderCounter'
-
-// MODULE 5 COMPONENTS (REDUCERS - useReducer)
-import BasicCounter     from './components/BasicCounter'
-import RegistrationForm from './components/RegistrationForm'
-import ShoppingCart     from './components/ShoppingCart'
-import TrafficLight     from './components/TrafficLight'
-import TextEditor       from './components/TextEditor'
-import MultiStepForm    from './components/MultiStepForm'
-
-// MODULE 6 COMPONENTS (CONTEXTS - useContext)
-import ThemeToggle             from './components/ThemeToggle'
-import UserBadge               from './components/UserBadge'
-import LoginForm               from './components/LoginForm'
-import AppHeader               from './components/AppHeader'
-import LanguageSelector        from './components/LanguageSelector'
-import NotificationCenter      from './components/NotificationCenter'
-import ShoppingCartContextDemo from './components/ShoppingCartContextDemo'
-
-// MODULE 7 COMPONENTS (MEMOIZATION - useMemo)
-import PrimeSieve              from './components/PrimeSieve'
-import FilteredCatalog         from './components/FilteredCatalog'
-import OrderMetrics            from './components/OrderMetrics'
-import MultiTagFilter          from './components/MultiTagFilter'
-
-// MODULE 8 COMPONENTS (MEMOIZED CALLBACKS - useCallback)
-import MemoizedList            from './components/MemoizedList'
-import SearchWithFetch         from './components/SearchWithFetch'
-import FilterTable             from './components/FilterTable'
-import PaginatedFetch          from './components/PaginatedFetch'
-
-// MODULE 9 COMPONENTS (CUSTOM HOOKS)
-import ModalDemo               from './components/ModalDemo'
-import QuantitySelector        from './components/QuantitySelector'
-import ThemeSelector           from './components/ThemeSelector'
-import LiveSearch              from './components/LiveSearch'
-import PostList                from './components/PostList'
-import ResponsiveLayout        from './components/ResponsiveLayout'
-import CodeBlock               from './components/CodeBlock'
-
-// MODULE 10 COMPONENTS (API CALLS)
-import PostListBasic           from './components/PostListBasic'
-import UserListWithRefetch     from './components/UserListWithRefetch'
-import PaginatedUserList       from './components/PaginatedUserList'
-import PostCrudWithAxios       from './components/PostCrudWithAxios'
-import UserSearchTable         from './components/UserSearchTable'
-
 const fruits = [
   { name: 'Manzana', emoji: '🍎', calories: 52 },
   { name: 'Banana',  emoji: '🍌', calories: 89, inSeason: true },
@@ -118,16 +62,9 @@ const storeCatalog = [
   { id: 3, name: 'Mouse inalámbrico', price: 29.99 },
 ]
 
-const EXAMPLE_CODE = `export function useToggle(initial = false) {
-  const [value, setValue] = useState(initial)
-  const toggle = useCallback(() => setValue(v => !v), [])
-  return { value, toggle }
-}`
-
 export default function App() {
   const [paso, setPaso] = useState<number>(1)
   const [cartItems, setCartItems] = useState<CartItem[]>([])
-  const { state: authState } = useAuth()
 
   function handleAddToCart(id: number, name: string, price: number) {
     setCartItems((prev) => {
@@ -377,102 +314,6 @@ export default function App() {
       case 31:
         return <AutoFocusInput />
 
-      // --- MODULO 4 (REFS - useRef) ---
-      case 32:
-        return <AutoFocusForm />
-      case 33:
-        return <Stopwatch />
-      case 34:
-        return <InlineEditor />
-      case 35:
-        return <PreviousValue />
-      case 36:
-        return <ScrollTracker />
-      case 37:
-        return <ClickOutside />
-      case 38:
-        return <VideoPlayer />
-      case 39:
-        return <RenderCounter />
-
-      // --- MODULO 5 (REDUCERS - useReducer) ---
-      case 40:
-        return <BasicCounter />
-      case 41:
-        return <RegistrationForm />
-      case 42:
-        return <ShoppingCart />
-      case 43:
-        return <TrafficLight />
-      case 44:
-        return <TextEditor />
-      case 45:
-        return <MultiStepForm />
-
-      // --- MODULO 6 (CONTEXTS - useContext) ---
-      case 46:
-        return <ThemeToggle />
-      case 47:
-        return <UserBadge />
-      case 48:
-        return <LoginForm />
-      case 49:
-        return <AppHeader />
-      case 50:
-        return <LanguageSelector />
-      case 51:
-        return <NotificationCenter />
-      case 52:
-        return <ShoppingCartContextDemo />
-
-      // --- MODULO 7 (MEMOIZATION - useMemo) ---
-      case 53:
-        return <PrimeSieve />
-      case 54:
-        return <FilteredCatalog />
-      case 55:
-        return <OrderMetrics />
-      case 56:
-        return <MultiTagFilter />
-
-      // --- MODULO 8 (MEMOIZED CALLBACKS - useCallback) ---
-      case 57:
-        return <MemoizedList />
-      case 58:
-        return <SearchWithFetch />
-      case 59:
-        return <FilterTable />
-      case 60:
-        return <PaginatedFetch />
-
-      // --- MODULO 9 (CUSTOM HOOKS) ---
-      case 61:
-        return <ModalDemo />
-      case 62:
-        return <QuantitySelector />
-      case 63:
-        return <ThemeSelector />
-      case 64:
-        return <LiveSearch />
-      case 65:
-        return <PostList />
-      case 66:
-        return <ResponsiveLayout />
-      case 67:
-        return <CodeBlock code={EXAMPLE_CODE} language="tsx" />
-
-      // --- MODULO 10 (API CALLS) ---
-      case 68:
-        return <PostListBasic />
-      case 69:
-        return <UserListWithRefetch />
-      case 70:
-        return <PaginatedUserList />
-      case 71:
-        return <PostCrudWithAxios />
-      case 72:
-        return <UserSearchTable />
-
       default:
         return <p style={{ color: '#e00' }}>Paso no configurado</p>
     }
@@ -555,78 +396,12 @@ export default function App() {
               <option value={30}>30. FetchUser (Petición HTTP real y cancelación)</option>
               <option value={31}>31. AutoFocusInput (Refs al DOM imperativo)</option>
             </optgroup>
-            <optgroup label="Módulo 4: Referencias (useRef)">
-              <option value={32}>32. AutoFocusForm (Salto secuencial de foco)</option>
-              <option value={33}>33. Stopwatch (Cronómetro con vueltas)</option>
-              <option value={34}>34. InlineEditor (Editor no controlado)</option>
-              <option value={35}>35. PreviousValue (Valor previo y tendencias)</option>
-              <option value={36}>36. ScrollTracker (Rastreador de scroll en elemento)</option>
-              <option value={37}>37. ClickOutside (Cierre de menú desplegable)</option>
-              <option value={38}>38. VideoPlayer (Controlador de video por ref)</option>
-              <option value={39}>39. RenderCounter (Contador silencioso de renders)</option>
-            </optgroup>
-            <optgroup label="Módulo 5: Estado Complejo (useReducer)">
-              <option value={40}>40. BasicCounter (Contador con Reducer)</option>
-              <option value={41}>41. RegistrationForm (Registro de usuario con API / errores)</option>
-              <option value={42}>42. ShoppingCart (Catálogo y Carrito con Reducer)</option>
-              <option value={43}>43. TrafficLight (Semáforo con Reducer)</option>
-              <option value={44}>44. TextEditor (Editor de texto con Deshacer)</option>
-              <option value={45}>45. MultiStepForm (Registro en pasos)</option>
-            </optgroup>
-            <optgroup label="Módulo 6: Contextos (useContext)">
-              <option value={46}>46. ThemeToggle (Botón de cambio de tema)</option>
-              <option value={47}>47. UserBadge (Badge de sesión con roles)</option>
-              <option value={48}>48. LoginForm (Inicio de sesión con AuthContext)</option>
-              <option value={49}>49. AppHeader (Header con múltiples contextos)</option>
-              <option value={50}>50. LanguageSelector (Traducciones e idiomas)</option>
-              <option value={51}>51. NotificationCenter (Notificaciones globales)</option>
-              <option value={52}>52. ShoppingCartContextDemo (Carrito global distribuido)</option>
-            </optgroup>
-            <optgroup label="Módulo 7: Memoización de Valores (useMemo)">
-              <option value={53}>53. PrimeSieve (Primos con criba memoizada)</option>
-              <option value={54}>54. FilteredCatalog (Búsqueda y ordenación encadenadas)</option>
-              <option value={55}>55. OrderMetrics (Derivación de estadísticas de pedidos)</option>
-              <option value={56}>56. MultiTagFilter (Filtro AND y conteos estáticos)</option>
-            </optgroup>
-            <optgroup label="Módulo 8: Memoización de Callbacks (useCallback)">
-              <option value={57}>57. MemoizedList (Filas estables con React.memo)</option>
-              <option value={58}>58. SearchWithFetch (Búsqueda segura con API en useEffect)</option>
-              <option value={59}>59. FilterTable (Tabla de empleados memoizada)</option>
-              <option value={60}>60. PaginatedFetch (Fetch paginado con dependencias)</option>
-            </optgroup>
-            <optgroup label="Módulo 9: Hooks Personalizados (Custom Hooks)">
-              <option value={61}>61. ModalDemo (Overlay modal con useToggle)</option>
-              <option value={62}>62. QuantitySelector (Contador con useCounter)</option>
-              <option value={63}>63. ThemeSelector (Persistencia de tema con useLocalStorage)</option>
-              <option value={64}>64. LiveSearch (Búsqueda demorada con useDebounce)</option>
-              <option value={65}>65. PostList (Peticiones con useFetch)</option>
-              <option value={66}>66. ResponsiveLayout (Diseños responsivos con useMediaQuery)</option>
-              <option value={67}>67. CodeBlock (Copiado de texto con useClipboard)</option>
-            </optgroup>
-            <optgroup label="Módulo 10: Peticiones API (fetch & axios)">
-              <option value={68}>68. PostListBasic (fetch directo en useEffect)</option>
-              <option value={69}>69. UserListWithRefetch (useFetchData con recarga manual)</option>
-              <option value={70}>70. PaginatedUserList (Paginación con usePagination)</option>
-              <option value={71}>71. PostCrudWithAxios (CRUD completo con Axios)</option>
-              <option value={72}>72. UserSearchTable (Búsqueda en memoria - Ejercicio)</option>
-            </optgroup>
           </select>
         </div>
       </header>
 
       <section style={{ minHeight: 300, display: 'flex', alignItems: 'flex-start', justifyContent: 'stretch' }}>
-        {/* Global info overlay when testing context components */}
-        {paso >= 46 && paso <= 52 && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 20, width: '100%' }}>
-            {authState.user && paso !== 49 && (
-              <div style={{ padding: '8px 12px', background: '#eff6ff', borderRadius: 8, fontSize: 13, color: '#1e40af', border: '1px solid #bfdbfe' }}>
-                Sesión activa en el contexto: <strong>{authState.user.name}</strong> ({authState.user.role})
-              </div>
-            )}
-            {renderContent()}
-          </div>
-        )}
-        {(paso < 46 || paso > 52) && renderContent()}
+        {renderContent()}
       </section>
     </main>
   )
