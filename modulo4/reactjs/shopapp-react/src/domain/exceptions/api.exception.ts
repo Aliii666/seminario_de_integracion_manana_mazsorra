@@ -10,7 +10,7 @@ export class ApiException extends DomainException {
   status: number
   /** Mensaje principal legible por el usuario. */
   detail: string
-  /** Errores por campo del formulario (solo en 400 de validación). */
+  
   fieldErrors?: Record<string, string[]>
 
   constructor(
