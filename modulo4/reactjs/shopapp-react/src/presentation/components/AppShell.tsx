@@ -1,9 +1,12 @@
 // src/presentation/components/AppShell.tsx
 import { Outlet, Link, useNavigate, NavLink } from 'react-router-dom'
+import { useEffect } from 'react'
 import { ShoppingBag, ShoppingCart, Package, User, LogOut, LayoutDashboard } from 'lucide-react'
 import { useAuthStore } from '@/presentation/store/auth.store'
 import { useCartStore } from '@/presentation/store/cart.store'
+import { useProfileStore } from '@/presentation/store/profile.store'
 import { CartDrawer } from '@/presentation/components/CartDrawer'
+import { UserAvatar } from '@/presentation/components/UserAvatar'
 import { Button } from '@/presentation/components/ui/button'
 import { Badge } from '@/presentation/components/ui/badge'
 import {
@@ -14,15 +17,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/presentation/components/ui/dropdown-menu'
-import { Avatar, AvatarFallback } from '@/presentation/components/ui/avatar'
 import { Separator } from '@/presentation/components/ui/separator'
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
 
-/** Obtiene las iniciales del username para el avatar. */
-function getInitials(username: string): string {
-  return username.slice(0, 2).toUpperCase()
-}
 
 /** Clases para los enlaces de navegación activos/inactivos. */
 function navLinkClass({ isActive }: { isActive: boolean }) {
@@ -37,12 +34,20 @@ function navLinkClass({ isActive }: { isActive: boolean }) {
 export default function AppShell() {
   const navigate = useNavigate()
   const { user, logout } = useAuthStore()
-
+  const { profile, fetchProfile, clearProfile } = useProfileStore()
   const cartItemCount = useCartStore((s) => s.itemCount())
   const openCart = useCartStore((s) => s.openCart)
 
+  // Carga el perfil una sola vez cuando hay sesión activa
+  useEffect(() => {
+    if (user && !profile) {
+      fetchProfile()
+    }
+  }, [user, profile, fetchProfile])
+
   async function handleLogout() {
     await logout()
+    clearProfile()
     navigate('/login', { replace: true })
   }
 
@@ -119,11 +124,7 @@ export default function AppShell() {
                     className="relative h-9 w-9 rounded-full"
                     aria-label="Menú de usuario"
                   >
-                    <Avatar className="h-9 w-9">
-                      <AvatarFallback className="bg-primary text-primary-foreground text-sm">
-                        {getInitials(user.username)}
-                      </AvatarFallback>
-                    </Avatar>
+                    <UserAvatar user={profile} size="sm" />
                   </Button>
                 </DropdownMenuTrigger>
 
