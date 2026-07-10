@@ -20,6 +20,11 @@ const ProductDetailPage = lazy(() => import('../pages/catalog/ProductDetailPage'
 // Carrito
 const CartPage = lazy(() => import('../pages/cart/CartPage'))
 
+// Órdenes
+const CheckoutPage = lazy(() => import('../pages/orders/CheckoutPage'))
+const OrdersPage = lazy(() => import('../pages/orders/OrdersPage'))
+const OrderDetailPage = lazy(() => import('../pages/orders/OrderDetailPage'))
+
 // El resto de páginas todavía no existen: se implementan en módulos posteriores
 // (Catálogo → 4/5, Carrito → 6, Órdenes → 7, Perfil → 8, Admin → 9-13) y cada uno
 // reemplaza aquí su propio <Route> por un lazy import real.
@@ -73,7 +78,15 @@ export default function AppRouter() {
               path="/orders"
               element={
                 <ProtectedRoute>
-                  <PlaceholderPage title="Órdenes — Módulo 7" />
+                  <OrdersPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/orders/new"
+              element={
+                <ProtectedRoute>
+                  <CheckoutPage />
                 </ProtectedRoute>
               }
             />
@@ -81,7 +94,7 @@ export default function AppRouter() {
               path="/orders/:id"
               element={
                 <ProtectedRoute>
-                  <PlaceholderPage title="Detalle de orden — Módulo 7" />
+                  <OrderDetailPage />
                 </ProtectedRoute>
               }
             />
