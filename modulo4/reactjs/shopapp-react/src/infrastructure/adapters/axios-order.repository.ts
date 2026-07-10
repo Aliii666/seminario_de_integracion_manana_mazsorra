@@ -4,6 +4,7 @@ import { parseApiError } from '@/infrastructure/http/parse-api-error'
 import type { OrderRepository } from '@/domain/ports/order.repository'
 import type { Order } from '@/domain/entities/order.entity'
 import type { PaginatedResult } from '@/domain/entities/paginated-result.entity'
+import type { OrderStats } from '@/domain/entities/order-stats.entity'
 
 export class AxiosOrderRepository implements OrderRepository {
   async getOrders(page = 1): Promise<PaginatedResult<Order>> {
@@ -47,6 +48,15 @@ export class AxiosOrderRepository implements OrderRepository {
   async confirmOrder(orderId: number): Promise<Order> {
     try {
       const { data } = await apiClient.post<Order>(`/orders/${orderId}/confirm/`, {})
+      return data
+    } catch (err) {
+      throw parseApiError(err)
+    }
+  }
+
+  async getStats(): Promise<OrderStats> {
+    try {
+      const { data } = await apiClient.get<OrderStats>('/orders/stats/')
       return data
     } catch (err) {
       throw parseApiError(err)
