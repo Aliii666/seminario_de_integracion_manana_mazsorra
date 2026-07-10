@@ -5,6 +5,7 @@ import { useAuthStore } from '@/presentation/store/auth.store'
 import ProtectedRoute from './ProtectedRoute'
 import AppShell from '@/presentation/components/AppShell'
 import PlaceholderPage from '../pages/PlaceholderPage'
+import { Toaster } from '@/presentation/components/ui/sonner'
 
 // ─── Lazy imports ─────────────────────────────────────────────────────────────
 
@@ -15,6 +16,9 @@ const RegisterPage = lazy(() => import('../pages/auth/RegisterPage'))
 // Catálogo
 const CatalogPage = lazy(() => import('../pages/catalog/CatalogPage'))
 const ProductDetailPage = lazy(() => import('../pages/catalog/ProductDetailPage'))
+
+// Carrito
+const CartPage = lazy(() => import('../pages/cart/CartPage'))
 
 // El resto de páginas todavía no existen: se implementan en módulos posteriores
 // (Catálogo → 4/5, Carrito → 6, Órdenes → 7, Perfil → 8, Admin → 9-13) y cada uno
@@ -56,12 +60,12 @@ export default function AppRouter() {
             <Route path="/catalog" element={<CatalogPage />} />
             <Route path="/products/:id" element={<ProductDetailPage />} />
 
-            {/* Requieren autenticación — placeholder hasta los módulos 6, 7 y 8 */}
+            {/* Requieren autenticación */}
             <Route
               path="/cart"
               element={
                 <ProtectedRoute>
-                  <PlaceholderPage title="Carrito — Módulo 6" />
+                  <CartPage />
                 </ProtectedRoute>
               }
             />
@@ -137,6 +141,7 @@ export default function AppRouter() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Suspense>
+      <Toaster />
     </BrowserRouter>
   )
 }
